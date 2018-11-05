@@ -43,6 +43,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private static final String TAG = ProfileActivity.class.getSimpleName();
     private static final int PICK_IMAGE_REQUEST = 1;
 
+
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.profile_toolbar)
     protected Toolbar mToolbar;

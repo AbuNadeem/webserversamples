@@ -8,6 +8,7 @@ import static com.samples.webserver.webserversamples.log_in_system.data.Contract
  */
 
 public class UtilsApi {
+
     public static BaseApiService getAPIService() {
         return RetrofitClient.getClient(BAS_URL).create(BaseApiService.class);
     }

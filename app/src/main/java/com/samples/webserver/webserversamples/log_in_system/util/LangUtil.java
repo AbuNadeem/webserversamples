@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class LangUtil {
 
+    
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String getCurrentLanguage(Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);

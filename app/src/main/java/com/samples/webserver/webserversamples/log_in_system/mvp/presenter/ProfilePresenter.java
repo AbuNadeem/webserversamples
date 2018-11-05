@@ -55,7 +55,7 @@ public class ProfilePresenter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void getUserInfo(final TextView tvName, final TextView tvEnmail, final TextView tvPhone, final CircleImageView circlImg) {
 
-        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
+        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.loading_user_data), true, false);
 
         String emailVal
                 = SharedPrefManager.getInstance(mCtx).getEmailOfUsers();
@@ -136,7 +136,7 @@ public class ProfilePresenter {
     public void updateUserInfo(final String pass, final String newName, final String newEmail, final String newPhone,
                                final TextView tvName, final TextView tvEnmail, final TextView tvPhone, final CircleImageView circlImg) {
 
-        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
+        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.updating_data), true, false);
 
         String emailVal
                 =SharedPrefManager.
@@ -229,7 +229,7 @@ public class ProfilePresenter {
             String _new_phoneval,
             final TextView tvName, final TextView tvEnmail, final TextView tvPhone, final CircleImageView circlImg
             ) {
-        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
+        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.updating_data), true, false);
 
 
         File imagefile = new File(old_part_img);

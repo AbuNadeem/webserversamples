@@ -6,6 +6,7 @@ import android.os.Parcelable;
 @SuppressWarnings("unused")
 public class MainModel implements Parcelable {
 
+
     private String name;
     private int image;
     private int color;

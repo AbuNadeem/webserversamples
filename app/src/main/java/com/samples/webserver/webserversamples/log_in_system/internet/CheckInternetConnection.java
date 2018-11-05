@@ -13,6 +13,7 @@ import java.util.Objects;
 @SuppressWarnings("ALL")
 public class CheckInternetConnection {
 
+
     public boolean checkInternet(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         //we are connected to a network

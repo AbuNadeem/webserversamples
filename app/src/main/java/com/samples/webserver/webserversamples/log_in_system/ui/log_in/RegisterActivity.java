@@ -85,7 +85,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAddImage.setOnClickListener(this);
         mBtnRegister.setOnClickListener(this);
 
-
     }
 
 

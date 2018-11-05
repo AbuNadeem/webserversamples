@@ -25,6 +25,7 @@ import butterknife.BindView;
 public class LogInActivity extends BaseActivity {
     // --Commented out by Inspection (03/11/18 02:00 م):private static final String TAG = LogInActivity.class.getSimpleName();
 
+
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.rv_container_login)
     protected RelativeLayout mRelativeLayout;

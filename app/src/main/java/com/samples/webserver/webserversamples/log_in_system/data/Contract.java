@@ -3,7 +3,7 @@ package com.samples.webserver.webserversamples.log_in_system.data;
 public class Contract {
 
 
-    public static final String BAS_URL = "https://ibrhimhssss.000webhostapp.com/dvr/";
+    public static final String BAS_URL = "http://ibrhimhssss.000webhostapp.com/dvr/";
 
     public static final String LOGIN_URL = "login/loginUser.php";
     public static final String REGISTER_URL = "login/registerUser.php";

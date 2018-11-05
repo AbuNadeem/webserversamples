@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 @SuppressWarnings("ALL")
 public class FragmentUpdatePassoword extends Fragment implements View.OnClickListener {
 
+
     @BindView(R.id.et_code)
     protected EditText mEtxtGetCode;
     @BindView(R.id.et_update_password)

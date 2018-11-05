@@ -19,8 +19,6 @@ import butterknife.BindView;
 @SuppressLint("Registered")
 public class MainActivity extends BaseActivity {
 
-
-
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.drawer_layout)
     protected DrawerLayout mDrawerLayout;

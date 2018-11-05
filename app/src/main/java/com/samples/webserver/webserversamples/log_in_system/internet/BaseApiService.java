@@ -22,6 +22,7 @@ import retrofit2.http.PartMap;
 
 public interface BaseApiService {
 
+
     @FormUrlEncoded
     @POST(Contract.LOGIN_URL)
     Call<ResponseBody> loginRequest(

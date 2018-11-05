@@ -46,7 +46,7 @@ public class ResetPasswordPresenter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void requestResetPass(final String emailVal) {
 
-        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
+        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.updating_password), true, false);
 
         mApiService.sendCodeToMail(emailVal, LangUtil.getCurrentLanguage(mCtx))
 

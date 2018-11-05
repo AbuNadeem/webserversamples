@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class EditTextUtil {
 
+
     public static boolean isEmailValid(CharSequence email) {
         return !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }

@@ -61,5 +61,9 @@
     <string name="confirm_changes">Confirm Changes</string>
     <string name="img_update_prf_content_description">Add the image you want if you want to update the old image</string>
     <string name="go_log_in_system">Go Log In System</string>
+    <string name="logging_in">Signing in .............</string>
+    <string name="loading_user_data">Loading user data</string>
+    <string name="updating_data">Updating user data</string>
+    <string name="updating_password">Updating password ....</string>
 
 </resources>

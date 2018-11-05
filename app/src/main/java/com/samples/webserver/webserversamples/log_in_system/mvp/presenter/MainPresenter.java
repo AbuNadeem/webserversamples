@@ -186,7 +186,7 @@ public class MainPresenter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private   void getUserImage(final CircleImageView circleImageView, final TextView tvName, final TextView tvEmail) {
 
-      mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
+      mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.loading_user_data), true, false);
 
         String emailVal
                 =SharedPrefManager.

@@ -9,6 +9,7 @@ import com.samples.webserver.webserversamples.log_in_system.data.Contract;
 
 @SuppressWarnings("unused")
 public class ResponseApiModel {
+
     @SerializedName(Contract.ERROR)
     private
     String error;

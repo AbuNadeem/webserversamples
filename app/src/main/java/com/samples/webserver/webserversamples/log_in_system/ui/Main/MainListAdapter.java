@@ -24,6 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.Holder> {
 
+
     // --Commented out by Inspection (03/11/18 02:00 م):private static final String TAG = MainListAdapter.class.toString();
     private final ArrayList<MainModel> mMainModelsList;
     private OnItemListClickListener onItemListClickListener;

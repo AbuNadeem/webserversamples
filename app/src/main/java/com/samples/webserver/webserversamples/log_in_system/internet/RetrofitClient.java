@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @SuppressWarnings("ALL")
 public class RetrofitClient {
+
     private static Retrofit retrofit = null;
 
     private static final Gson gson = new GsonBuilder()

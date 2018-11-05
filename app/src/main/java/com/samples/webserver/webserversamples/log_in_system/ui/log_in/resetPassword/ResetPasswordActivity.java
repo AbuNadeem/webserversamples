@@ -14,6 +14,7 @@ import com.samples.webserver.webserversamples.R;
 @SuppressLint("Registered")
 public class ResetPasswordActivity extends AppCompatActivity {
 
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

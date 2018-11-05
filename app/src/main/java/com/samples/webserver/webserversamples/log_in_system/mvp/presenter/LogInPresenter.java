@@ -32,6 +32,7 @@ import retrofit2.Response;
 
 public class LogInPresenter {
 
+
     private final Context mCtx;
     private final BaseApiService mApiService;
     private ProgressDialog mLoading;
@@ -44,7 +45,7 @@ public class LogInPresenter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void requestLogin(String emailVal, String passVal, String tokenVal) {
 
-        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
+        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.logging_in), true, false);
 
         mApiService.loginRequest(emailVal, passVal, tokenVal, LangUtil.getCurrentLanguage(mCtx))
 
