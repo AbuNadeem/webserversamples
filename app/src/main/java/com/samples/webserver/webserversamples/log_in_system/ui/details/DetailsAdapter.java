@@ -38,6 +38,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
         this.mDetailsModels = detailsModelArrayList;
         mLayoutInflater = inflater;
     }
+
     @SuppressWarnings("unused")
     @NonNull
     @Override
@@ -46,12 +47,14 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
 
         return new Holder(view);
     }
+
     @SuppressWarnings("unused")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
 
         holder.bind(mDetailsModels.get(position), position);
     }
+
     @SuppressWarnings("unused")
     @Override
     public int getItemCount() {

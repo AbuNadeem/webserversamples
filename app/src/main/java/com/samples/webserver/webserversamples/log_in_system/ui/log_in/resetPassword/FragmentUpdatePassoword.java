@@ -53,12 +53,12 @@ public class FragmentUpdatePassoword extends Fragment implements View.OnClickLis
         switch (id) {
             case R.id.btn_update_password:
                 ResetPasswordPresenter resetPasswordPresenter = new ResetPasswordPresenter(getActivity());
-                if(EditTextUtil.passCases(mEtxtGetNewPass.getText().toString())==6) {
+                if (EditTextUtil.passCases(mEtxtGetNewPass.getText().toString()) == 6) {
                     mEtxtGetNewPass.setError(getResources().getString(R.string.password_error));
                     return;
 
                 }
-                if(!mEtxtGetNewPass.getText().toString().equals(mEtxtConfirmNewPass.getText().toString())) {
+                if (!mEtxtGetNewPass.getText().toString().equals(mEtxtConfirmNewPass.getText().toString())) {
                     mEtxtGetNewPass.setError(getResources().getString(R.string.confirm_password_error));
                     mEtxtConfirmNewPass.setError(getResources().getString(R.string.confirm_password_error));
 

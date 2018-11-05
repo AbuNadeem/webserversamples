@@ -51,8 +51,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainPresenter {
-   @SuppressWarnings("unused")
-   private final static String TAG = MainPresenter.class.getSimpleName();
+    @SuppressWarnings("unused")
+    private final static String TAG = MainPresenter.class.getSimpleName();
     private final Context mCtx;
     private final BaseApiService mApiService;
     private ProgressDialog mLoading;
@@ -61,6 +61,7 @@ public class MainPresenter {
         mCtx = context;
         mApiService = UtilsApi.getAPIService();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void GetListByScreenSize(Context context, RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
 
@@ -69,7 +70,7 @@ public class MainPresenter {
         switch (rotation) {
             case Surface.ROTATION_0:
                 if (isTablet(context)) {
-                    initialiseListWithsLargeSize( rv, getLayoutInflater, mainListAdapter);
+                    initialiseListWithsLargeSize(rv, getLayoutInflater, mainListAdapter);
                 } else {
                     initialiseListWithPhoneScreen(rv, getLayoutInflater, mainListAdapter);
                 }
@@ -86,21 +87,20 @@ public class MainPresenter {
         }
     }
 
-    private  boolean isTablet(Context context) {
+    private boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     @SuppressWarnings("ParameterCanBeLocal")
-    private  void initialiseListWithPhoneScreen(RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
+    private void initialiseListWithPhoneScreen(RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
 
 
     }
 
     @SuppressWarnings("ParameterCanBeLocal")
-    private  void initialiseListWithsLargeSize(RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
-
+    private void initialiseListWithsLargeSize(RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
 
 
     }
@@ -122,7 +122,7 @@ public class MainPresenter {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressWarnings("unused")
-    public  void initNavigationDrawer(final Context context, final NavigationView navigationView) {
+    public void initNavigationDrawer(final Context context, final NavigationView navigationView) {
 
         Configuration configuration = context.getResources().getConfiguration();
         final int screenWidthDp = configuration.screenWidthDp; //The current width of the available screen space, in dp units, corresponding to screen width resource qualifier.
@@ -130,14 +130,14 @@ public class MainPresenter {
             @Override
             public void run() {
                 Resources resources = context.getResources();
-                float width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (screenWidthDp*0.83), resources.getDisplayMetrics());
+                float width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (screenWidthDp * 0.83), resources.getDisplayMetrics());
                 DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) navigationView.getLayoutParams();
                 params.width = (int) (width);
                 navigationView.setLayoutParams(params);
             }
         });
 
-        Log.d(TAG,"allWidthOfScreen ="+ String.valueOf(screenWidthDp)+"\n with after div ="+ String.valueOf((int) (screenWidthDp*0.83)));
+        Log.d(TAG, "allWidthOfScreen =" + String.valueOf(screenWidthDp) + "\n with after div =" + String.valueOf((int) (screenWidthDp * 0.83)));
 
         CircleImageView circleImageView = navigationView.findViewById(R.id.nav_image);
         TextView txtName = navigationView.findViewById(R.id.nav_txtname);
@@ -145,7 +145,7 @@ public class MainPresenter {
         ImageView imgProfile = navigationView.findViewById(R.id.nav_profile);
         ImageView imgShare = navigationView.findViewById(R.id.nav_share);
         ImageView imgLogOut = navigationView.findViewById(R.id.nav_signout);
-        getUserImage(circleImageView,txtName,txtEmail);
+        getUserImage(circleImageView, txtName, txtEmail);
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -184,12 +184,12 @@ public class MainPresenter {
 
     @SuppressWarnings("unused")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private   void getUserImage(final CircleImageView circleImageView, final TextView tvName, final TextView tvEmail) {
+    private void getUserImage(final CircleImageView circleImageView, final TextView tvName, final TextView tvEmail) {
 
-      mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.loading_user_data), true, false);
+        mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.loading_user_data), true, false);
 
         String emailVal
-                =SharedPrefManager.
+                = SharedPrefManager.
                 getInstance(mCtx)
                 .getEmailOfUsers();
 
@@ -214,9 +214,9 @@ public class MainPresenter {
                                 if (jsonRESULTS.optString(Contract.ERROR).equals(Contract.FALSE_VAL)) {
                                     String name = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.NAME_COL);
                                     String email = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.EMAIL_COL);
-                                    String imgUrl=jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.IMAGE_COL);
-                                    tvEmail.setText(mCtx.getResources().getString(R.string.email)+" :"+email);
-                                    tvName.setText(mCtx.getResources().getString(R.string.name)+" :"+name);
+                                    String imgUrl = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.IMAGE_COL);
+                                    tvEmail.setText(mCtx.getResources().getString(R.string.email) + " :" + email);
+                                    tvName.setText(mCtx.getResources().getString(R.string.name) + " :" + name);
 
                                     if (imgUrl != null) {
 
@@ -225,11 +225,11 @@ public class MainPresenter {
                                                 Toast.LENGTH_LONG).show();
 
                                         Glide.with(mCtx).load(imgUrl).into(circleImageView);
-                                        Log.d(TAG,"JSONStringPrfImageUrl ="+imgUrl);
+                                        Log.d(TAG, "JSONStringPrfImageUrl =" + imgUrl);
                                         mLoading.dismiss();
 
 
-                                    }else {
+                                    } else {
                                         circleImageView.setImageResource(R.drawable.blank_profile_picture);
                                     }
                                     Toast.makeText(mCtx, jsonRESULTS.optString(Contract.ERROR_MSG), Toast.LENGTH_SHORT).show();
@@ -239,7 +239,7 @@ public class MainPresenter {
                                     circleImageView.setImageResource(R.drawable.blank_profile_picture);
 
                                     Toast.makeText(mCtx, jsonRESULTS.optString(Contract.ERROR_MSG), Toast.LENGTH_SHORT).show();
-                                   mLoading.dismiss();
+                                    mLoading.dismiss();
 
                                 }
                             } catch (JSONException e) {
@@ -258,7 +258,6 @@ public class MainPresenter {
                     }
                 });
     }
-
 
 
 }

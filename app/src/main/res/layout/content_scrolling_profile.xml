@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <Button
             android:id="@+id/btn_prf_confirm"
             android:layout_width="wrap_content"
@@ -26,6 +27,7 @@
             android:visibility="gone"
             android:textColor="@color/white"
             android:text="@string/confirm_changes" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +45,7 @@
                 android:layout_marginRight="@dimen/profile_side_margin"
                 android:src="@drawable/ic_face"
                 android:contentDescription="@string/img_prf_phone_conten_description" />
+
             <EditText
                 android:id="@+id/extxt_prf_name"
                 android:layout_width="match_parent"
@@ -98,6 +101,7 @@
                 android:layout_marginRight="@dimen/profile_side_margin"
                 android:src="@drawable/ic_phone"
                 android:contentDescription="@string/img_prf_phone_conten_description" />
+
             <EditText
                 android:id="@+id/extxt_prf_phone"
                 android:layout_width="match_parent"
@@ -240,16 +244,17 @@
             android:clickable="true"
             android:padding="@dimen/profile_side_margin"
             android:focusable="true">
-        <Button
-            android:id="@+id/btn_prf_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_rectangle_button"
-            android:textAllCaps="false"
-            android:layout_marginLeft="@dimen/profile_side_margin"
-            android:layout_marginStart="@dimen/profile_side_margin"
-            android:textColor="@color/white"
-            android:text="@string/edit_profile" />
+
+            <Button
+                android:id="@+id/btn_prf_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rectangle_button"
+                android:textAllCaps="false"
+                android:layout_marginLeft="@dimen/profile_side_margin"
+                android:layout_marginStart="@dimen/profile_side_margin"
+                android:textColor="@color/white"
+                android:text="@string/edit_profile" />
         </RelativeLayout>
 
     </LinearLayout>

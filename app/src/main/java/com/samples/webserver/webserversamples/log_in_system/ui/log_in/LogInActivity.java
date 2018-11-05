@@ -56,6 +56,7 @@ public class LogInActivity extends BaseActivity {
 
         }
     }
+
     @SuppressWarnings("SameReturnValue")
     @Override
     protected int getResourceLayout() {

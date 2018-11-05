@@ -83,7 +83,7 @@ public class ProfilePresenter {
                                     String name = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.NAME_COL);
                                     String email = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.EMAIL_COL);
                                     String phone = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.PHONE_COL);
-                                    String imgUrl=jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.IMAGE_COL);
+                                    String imgUrl = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.IMAGE_COL);
                                     SharedPrefManager.getInstance(mCtx).saveNamesOfUsers(name);
                                     SharedPrefManager.getInstance(mCtx).saveEmailOfUsers(email);
                                     SharedPrefManager.getInstance(mCtx).savePhonefUsers(phone);
@@ -100,10 +100,10 @@ public class ProfilePresenter {
                                                 Toast.LENGTH_LONG).show();
 
                                         Glide.with(mCtx).load(imgUrl).into(circlImg);
-                                        Log.d(TAG,"JSONStringPrfImageUrl ="+imgUrl);
+                                        Log.d(TAG, "JSONStringPrfImageUrl =" + imgUrl);
 
 
-                                    }else {
+                                    } else {
                                         mLoading.dismiss();
 
                                         circlImg.setImageResource(R.drawable.blank_profile_picture);
@@ -139,12 +139,12 @@ public class ProfilePresenter {
         mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.updating_data), true, false);
 
         String emailVal
-                =SharedPrefManager.
+                = SharedPrefManager.
                 getInstance(mCtx)
                 .getEmailOfUsers();
 
 
-        mApiService.updateUserInfo(emailVal,pass,newName,newEmail,newPhone,LangUtil.getCurrentLanguage(mCtx))
+        mApiService.updateUserInfo(emailVal, pass, newName, newEmail, newPhone, LangUtil.getCurrentLanguage(mCtx))
 
                 // ,SharedPrefManager.getInstance( this ).getDeviceToken())
                 .enqueue(new Callback<ResponseBody>() {
@@ -171,7 +171,7 @@ public class ProfilePresenter {
                                     String name = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.NAME_COL);
                                     String email = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.EMAIL_COL);
                                     String phone = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.PHONE_COL);
-                                    String imgUrl=jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.IMAGE_COL);
+                                    String imgUrl = jsonRESULTS.getJSONObject(Contract.USER_COL).optString(Contract.IMAGE_COL);
                                     SharedPrefManager.getInstance(mCtx).saveNamesOfUsers(name);
                                     SharedPrefManager.getInstance(mCtx).saveEmailOfUsers(email);
                                     SharedPrefManager.getInstance(mCtx).savePhonefUsers(phone);
@@ -187,10 +187,10 @@ public class ProfilePresenter {
                                                 Toast.LENGTH_LONG).show();
 
                                         Glide.with(mCtx).load(imgUrl).into(circlImg);
-                                        Log.d(TAG,"JSONStringPrfImageUrl ="+imgUrl);
+                                        Log.d(TAG, "JSONStringPrfImageUrl =" + imgUrl);
 
 
-                                    }else {
+                                    } else {
                                         mLoading.dismiss();
 
                                         circlImg.setImageResource(R.drawable.blank_profile_picture);
@@ -218,7 +218,6 @@ public class ProfilePresenter {
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void requestUpdateInfoWithImg(
             String old_part_img,
@@ -228,7 +227,7 @@ public class ProfilePresenter {
             String new_emailval,
             String _new_phoneval,
             final TextView tvName, final TextView tvEnmail, final TextView tvPhone, final CircleImageView circlImg
-            ) {
+    ) {
         mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.updating_data), true, false);
 
 
@@ -252,7 +251,7 @@ public class ProfilePresenter {
             }
         }
 
-        String emailVal=SharedPrefManager.getInstance(mCtx).getEmailOfUsers();
+        String emailVal = SharedPrefManager.getInstance(mCtx).getEmailOfUsers();
 
         RequestBody reqBody = RequestBody.create(MediaType.parse(Contract.MULTIPART_FILE_PATH), imagefile);
         MultipartBody.Part partImage = MultipartBody.Part.createFormData(Contract.PIC_TO_LOAD, imagefile.getName(), reqBody);
@@ -265,7 +264,7 @@ public class ProfilePresenter {
 
 
         HashMap<String, RequestBody> map = new HashMap<>();
-        map.put(Contract.EMAIL_COL,email );
+        map.put(Contract.EMAIL_COL, email);
         map.put(Contract.PASSWORD_COL, password);
         map.put(Contract.NEW_NAME_COL, new_name);
         map.put(Contract.NEW_EMAIL_COL, new_email);
@@ -296,7 +295,7 @@ public class ProfilePresenter {
                         String name = Objects.requireNonNull(response.body()).getName();
                         String email = Objects.requireNonNull(response.body()).getEmail();
                         String phone = Objects.requireNonNull(response.body()).getPhone();
-                        String imgUrl= Objects.requireNonNull(response.body()).getImg_url();
+                        String imgUrl = Objects.requireNonNull(response.body()).getImg_url();
                         SharedPrefManager.getInstance(mCtx).saveNamesOfUsers(name);
                         SharedPrefManager.getInstance(mCtx).saveEmailOfUsers(email);
                         SharedPrefManager.getInstance(mCtx).savePhonefUsers(phone);
@@ -312,10 +311,10 @@ public class ProfilePresenter {
                                     Toast.LENGTH_LONG).show();
 
                             Glide.with(mCtx).load(imgUrl).into(circlImg);
-                            Log.d(TAG,"JSONStringPrfImageUrl ="+imgUrl);
+                            Log.d(TAG, "JSONStringPrfImageUrl =" + imgUrl);
 
 
-                        }else {
+                        } else {
                             mLoading.dismiss();
 
                             circlImg.setImageResource(R.drawable.blank_profile_picture);
@@ -325,7 +324,7 @@ public class ProfilePresenter {
                     }
 
 
-                } else   {
+                } else {
                     Toast.makeText(mCtx,
                             Objects.requireNonNull(response.body()).getError_msg()
                             , Toast.LENGTH_SHORT).show();

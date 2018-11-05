@@ -33,7 +33,6 @@ public class DetailsActivity extends BaseActivity {
     }
 
 
-
     @SuppressWarnings("SameReturnValue")
     @Override
     protected int getResourceLayout() {

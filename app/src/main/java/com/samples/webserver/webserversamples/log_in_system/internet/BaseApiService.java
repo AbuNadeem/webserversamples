@@ -1,8 +1,6 @@
 package com.samples.webserver.webserversamples.log_in_system.internet;
 
 
-
-
 import com.samples.webserver.webserversamples.log_in_system.data.Contract;
 import com.samples.webserver.webserversamples.log_in_system.internet.model.ResponseApiModel;
 
@@ -84,10 +82,6 @@ public interface BaseApiService {
     Call<ResponseApiModel> updateUserInfoWithImg(
             @PartMap() Map<String, RequestBody> partMap,
             @Part MultipartBody.Part image);
-
-
-
-
 
 
 }

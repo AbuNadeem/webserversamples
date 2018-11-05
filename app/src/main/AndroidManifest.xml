@@ -47,7 +47,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        <activity android:name=".log_in_system.ui.log_in.LogInActivity"/>
+
+        <activity android:name=".log_in_system.ui.log_in.LogInActivity" />
 
         <activity android:name=".log_in_system.ui.details.DetailsActivity" />
     </application>

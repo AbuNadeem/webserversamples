@@ -87,7 +87,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     @BindView(R.id.img_edit_prf)
     protected ImageView mImgEdit;
 
-    private Boolean isClick=false;
+    private Boolean isClick = false;
 
 
     private ProfilePresenter mProfilePresenter;
@@ -103,11 +103,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     protected void onViewReady(Bundle savedInstanceState, Intent intent) {
         super.onViewReady(savedInstanceState, intent);
         isTablet = getResources().getBoolean(R.bool.isTablet);
-        mProfilePresenter=new ProfilePresenter(this);
+        mProfilePresenter = new ProfilePresenter(this);
         setupToolbar();
         // AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) mCollapsingToolbarLayout.getLayoutParams();
 
     }
+
     @SuppressWarnings("SameReturnValue")
     @Override
     protected int getResourceLayout() {
@@ -119,7 +120,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     protected void init() {
 
 
-        mProfilePresenter.getUserInfo(mTxtName,mTxtEmail,mTxtPhone,mCircleImageViewHolder);
+        mProfilePresenter.getUserInfo(mTxtName, mTxtEmail, mTxtPhone, mCircleImageViewHolder);
     }
 
 
@@ -135,6 +136,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         intent.setType("image/*");
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -158,7 +160,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         Glide.with(this).load(mActualImageFile).into(mCircleImageViewHolder);
                         cursor.close();
 
-                       // mCircleImageViewHolder.setImageBitmap(BitmapFactory.decodeFile(mActualImageFile.getAbsolutePath()));
+                        // mCircleImageViewHolder.setImageBitmap(BitmapFactory.decodeFile(mActualImageFile.getAbsolutePath()));
                     }
                 }
 
@@ -184,6 +186,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
     }
+
     @SuppressWarnings("SameReturnValue")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -202,10 +205,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
-        int id=view.getId();
-        switch (id){
+        int id = view.getId();
+        switch (id) {
             case R.id.btn_prf_edit:
-                if(!isClick){
+                if (!isClick) {
                     mEtxtName.setVisibility(View.VISIBLE);
                     mTxtName.setVisibility(View.GONE);
                     mEtxtEmail.setVisibility(View.VISIBLE);
@@ -241,10 +244,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     mBtnConfirmChanges.setVisibility(View.VISIBLE);
                     Log.e(TAG, "emailValue_in_profile 1= " + mEtxtEmail.getText().toString());
 
-                    isClick=true;
-                }else {
+                    isClick = true;
+                } else {
 
-                    isClick=false;
+                    isClick = false;
                 }
                 break;
             case R.id.btn_prf_confirm:
@@ -269,7 +272,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         lp.copyFrom(Objects.requireNonNull(mUpdateDialog.getWindow()).getAttributes());
         lp.width = 48;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.gravity =  CENTER;
+        lp.gravity = CENTER;
         lp.windowAnimations = R.style.Theme_Dialog;
         mUpdateDialog.getWindow().setAttributes(lp);
 
@@ -283,57 +286,56 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         Log.e(TAG, "emailValue_in_profile 2= " + newEmail);
 
 
-
         mCancel.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-                                           mUpdateDialog.dismiss();
-                                       }
-                                   });
+            @Override
+            public void onClick(View view) {
+                mUpdateDialog.dismiss();
+            }
+        });
 
 
-                mAdd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+        mAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                        Log.d(TAG,"confirm_passV="+mEdtxtGetConfirmPass.getText().toString());
-                        Toast.makeText(ProfileActivity.this, "confirm_passV="+mEdtxtGetConfirmPass.getText().toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "confirm_passV=" + mEdtxtGetConfirmPass.getText().toString());
+                Toast.makeText(ProfileActivity.this, "confirm_passV=" + mEdtxtGetConfirmPass.getText().toString(), Toast.LENGTH_SHORT).show();
 
-                        if (mPart_image != null) {
-                            Log.e(TAG, "mPart_image_in_profile= " + mPart_image);
+                if (mPart_image != null) {
+                    Log.e(TAG, "mPart_image_in_profile= " + mPart_image);
 
-                            mProfilePresenter.requestUpdateInfoWithImg(
-                                    mPart_image,
-                                    mActualImageFile,
-                                    mEdtxtGetConfirmPass.getText().toString(),
-                                    newName,
-                                    newEmail
-                                    ,newPhone,mTxtName,mTxtEmail,mTxtPhone,mCircleImageViewHolder);
+                    mProfilePresenter.requestUpdateInfoWithImg(
+                            mPart_image,
+                            mActualImageFile,
+                            mEdtxtGetConfirmPass.getText().toString(),
+                            newName,
+                            newEmail
+                            , newPhone, mTxtName, mTxtEmail, mTxtPhone, mCircleImageViewHolder);
 
-                        }else {
-                            mProfilePresenter.updateUserInfo(
-                                    mEdtxtGetConfirmPass.getText().toString(),
-                                    newName,
-                                    newEmail
-                                    ,newPhone,mTxtName,mTxtEmail,mTxtPhone,mCircleImageViewHolder);
+                } else {
+                    mProfilePresenter.updateUserInfo(
+                            mEdtxtGetConfirmPass.getText().toString(),
+                            newName,
+                            newEmail
+                            , newPhone, mTxtName, mTxtEmail, mTxtPhone, mCircleImageViewHolder);
 
-                        }
+                }
 
-                        Log.e(TAG, "emailValue_in_profile 3= " + newEmail);
+                Log.e(TAG, "emailValue_in_profile 3= " + newEmail);
 
 
-                        mEtxtName.setVisibility(View.GONE);
-                        mTxtName.setVisibility(View.VISIBLE);
-                        mEtxtEmail.setVisibility(View.GONE);
-                        mTxtEmail.setVisibility(View.VISIBLE);
-                        mEtxtPhone.setVisibility(View.GONE);
-                        mTxtPhone.setVisibility(View.VISIBLE);
-                        mBtnConfirmChanges.setVisibility(View.GONE);
-                        mImgEdit.setVisibility(View.GONE);
+                mEtxtName.setVisibility(View.GONE);
+                mTxtName.setVisibility(View.VISIBLE);
+                mEtxtEmail.setVisibility(View.GONE);
+                mTxtEmail.setVisibility(View.VISIBLE);
+                mEtxtPhone.setVisibility(View.GONE);
+                mTxtPhone.setVisibility(View.VISIBLE);
+                mBtnConfirmChanges.setVisibility(View.GONE);
+                mImgEdit.setVisibility(View.GONE);
 
-                        mUpdateDialog.dismiss();
-                    }
-                });
+                mUpdateDialog.dismiss();
+            }
+        });
 
         mUpdateDialog.show();
 

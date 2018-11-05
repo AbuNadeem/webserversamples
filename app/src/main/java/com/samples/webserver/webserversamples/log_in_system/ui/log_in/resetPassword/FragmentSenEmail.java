@@ -24,7 +24,6 @@ import butterknife.ButterKnife;
 public class FragmentSenEmail extends Fragment implements View.OnClickListener {
 
 
-
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.et_send_email)
     protected EditText mEtxtGetEmail;
