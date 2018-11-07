@@ -5,8 +5,13 @@ import com.samples.webserver.webserversamples.log_in_system.data.Contract;
 
 /**
  * Created by ibrahim on 21/01/18.
+ *
+ * this class used in multiple requests in retrofit we used all values
+ * here with requests contains files to send to server
  */
-
+/**
+ *
+ ** {@linkplain com.samples.webserver.webserversamples.log_in_system.internet.BaseApiService}*/
 @SuppressWarnings("unused")
 public class ResponseApiModel {
 

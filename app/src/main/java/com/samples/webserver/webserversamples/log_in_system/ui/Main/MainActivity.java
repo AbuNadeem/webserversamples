@@ -20,7 +20,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
 
     @SuppressWarnings("WeakerAccess")
-    @BindView(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)//DrawerLayout cnotainer NavigationView
     protected DrawerLayout mDrawerLayout;
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.maintoolbar)
@@ -39,8 +39,9 @@ public class MainActivity extends BaseActivity {
     protected void init() {
         MainPresenter mainPresenter = new MainPresenter(this);
         setSupportActionBar(mToolbar);
-        mToolbar.setLogoDescription(getResources().getString(R.string.app_name));
+        mToolbar.setLogoDescription(getResources().getString(R.string.app_name));//to show title inside  toolbar
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        //to make animation with action with close and open NavigationView with DrawerLayout
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity {
 
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() {//to make arrow back icon in toolbar to open and close DrawerLayout
 
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);

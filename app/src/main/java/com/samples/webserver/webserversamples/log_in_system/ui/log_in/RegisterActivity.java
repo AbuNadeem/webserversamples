@@ -39,13 +39,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final int REQUEST_CODE_MANUAL = 5;
-    private static final int PICK_IMAGE_REQUEST = 1;
-
 
     private static final String TAG = RegisterActivity.class.getSimpleName();
+
+    private static final int PICK_IMAGE_REQUEST = 1;//intent value that used to get Image from device storage
+
+    private static final int REQUEST_CODE_MANUAL = 5;//intent value used in onRequestPermissionsResult
     private static final String[] INITIAL_PERMS = {android.Manifest.permission.READ_EXTERNAL_STORAGE};
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;//intent value used in ask permissions
 
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.rv_container_register)
@@ -96,19 +97,33 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case PICK_IMAGE_REQUEST:
                 if (resultCode == RESULT_OK) {
                     try {
-                        Uri imageData = data.getData();
-                        String[] imageProjection = {MediaStore.Images.Media.DATA};
-                        Cursor cursor = getContentResolver().query(Objects.requireNonNull(imageData), imageProjection, null, null, null);
+                        Uri imageData = data.getData();//url get path of slected file
 
-                        if (cursor != null) {
-                            cursor.moveToFirst();
-                            int indexImage = cursor.getColumnIndex(imageProjection[0]);
-                            mPart_image = cursor.getString(indexImage);
+
+                        /**all action of cursur to return string value of selctrd file from storage to send this value to
+                         * requestRegisterWithPhoto methode inside class
+                         ** {@linkplain com.samples.webserver.webserversamples.log_in_system.mvp.presenter.RegisterPresenter */
+                        String[] imageProjection = {MediaStore.Images.Media.DATA}; /*get all images from storage */
+                        Cursor cursor = getContentResolver().//initialize cursor on specific url that come from Intent data
+                                query(Objects.requireNonNull(imageData),
+                                        imageProjection,
+                                        null,
+                                        null,
+                                        null);
+
+                        if (cursor != null) {//after make sur cursor not null
+                            cursor.moveToFirst();//start move cursor
+                            int indexImage = cursor.getColumnIndex(imageProjection[0]);//get index of movment of cursor
+                            mPart_image = cursor.getString(indexImage);//get string value of indext to get image file wanted
 
                             if (mPart_image != null) {
-                                mActualImageFile = new File(mPart_image);
-                                // mImgHolder.setImageBitmap( BitmapFactory.decodeFile( mActualImageFile.getAbsolutePath() ) );
-                                Glide.with(this).load(mActualImageFile).into(mImgHolder);
+                                mActualImageFile = new File(mPart_image);//initialize File mActualImageFile from String come from cursor
+
+                                /*imageview to show the file of image that came from string path cursor
+                                get this string from that intent Url path that and all finally came as File*/
+
+                                // mImgHolder.setImageBitmap( BitmapFactory.decodeFile( mActualImageFile.getAbsolutePath() ) );//show by Bitmap
+                                Glide.with(this).load(mActualImageFile).into(mImgHolder);//show with Glide (Reommededd)
                                 // customCompressImage();
                                 cursor.close();
 
@@ -122,14 +137,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void openGallery() {
+    private void openGallery() {//open galary intent
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, PICK_IMAGE_REQUEST);
     }
 
-    private void galleryPermissionDialog() {
-
+    private void galleryPermissionDialog() {/*this dialog will appear when first open
+                                            to note user to give app permission to read device storage*/
         int hasWriteContactsPermission = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             hasWriteContactsPermission = ContextCompat.checkSelfPermission(RegisterActivity.this,
@@ -324,7 +339,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void initImage() {
+    private void initImage() {//to open image and ask permission for all  versions of android want permissions
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 

@@ -54,9 +54,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * using generally in child activities to display status of coming data
      * using here
-     * {@linkplain com.and.ibrahim.teleprompter.mvp.view}
-     * {@linkplain com.and.ibrahim.teleprompter.mvp.presenter}
-     * {@linkplain  com.and.ibrahim.teleprompter.modules.listContents}
      */
     protected void showDialog(String message) {
         if (mProgressDialog == null) {

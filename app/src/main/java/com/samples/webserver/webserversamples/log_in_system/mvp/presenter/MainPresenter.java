@@ -30,9 +30,7 @@ import com.samples.webserver.webserversamples.log_in_system.data.Contract;
 import com.samples.webserver.webserversamples.log_in_system.data.SharedPrefManager;
 import com.samples.webserver.webserversamples.log_in_system.internet.BaseApiService;
 import com.samples.webserver.webserversamples.log_in_system.internet.UtilsApi;
-import com.samples.webserver.webserversamples.log_in_system.mvp.model.MainModel;
-import com.samples.webserver.webserversamples.log_in_system.ui.Main.MainListAdapter;
-import com.samples.webserver.webserversamples.log_in_system.ui.details.DetailsActivity;
+
 import com.samples.webserver.webserversamples.log_in_system.ui.log_in.LogInActivity;
 import com.samples.webserver.webserversamples.log_in_system.ui.log_in.ProfileActivity;
 import com.samples.webserver.webserversamples.log_in_system.util.LangUtil;
@@ -62,30 +60,6 @@ public class MainPresenter {
         mApiService = UtilsApi.getAPIService();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void GetListByScreenSize(Context context, RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
-
-        assert context.getSystemService(Context.WINDOW_SERVICE) != null;
-        final int rotation = ((WindowManager) Objects.requireNonNull(context.getSystemService(Context.WINDOW_SERVICE))).getDefaultDisplay().getOrientation();
-        switch (rotation) {
-            case Surface.ROTATION_0:
-                if (isTablet(context)) {
-                    initialiseListWithsLargeSize(rv, getLayoutInflater, mainListAdapter);
-                } else {
-                    initialiseListWithPhoneScreen(rv, getLayoutInflater, mainListAdapter);
-                }
-                break;
-            case Surface.ROTATION_90:
-                initialiseListWithsLargeSize(rv, getLayoutInflater, mainListAdapter);
-                break;
-            case Surface.ROTATION_180:
-                initialiseListWithPhoneScreen(rv, getLayoutInflater, mainListAdapter);
-                break;
-
-            case Surface.ROTATION_270:
-                break;
-        }
-    }
 
     private boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout
@@ -93,30 +67,6 @@ public class MainPresenter {
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
-    @SuppressWarnings("ParameterCanBeLocal")
-    private void initialiseListWithPhoneScreen(RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
-
-
-    }
-
-    @SuppressWarnings("ParameterCanBeLocal")
-    private void initialiseListWithsLargeSize(RecyclerView rv, LayoutInflater getLayoutInflater, MainListAdapter mainListAdapter) {
-
-
-    }
-
-    private static void launchDetailActivity(int position, Context context) {
-        Intent intent = new Intent(context, DetailsActivity.class);
-        Bundle extras = new Bundle();
-        extras.putInt(Contract.EXTRA_MAIN_LIST_POSITION, position);
-        // SharedPrefManager.getInstance(this).setPrefBakePosition(position);
-        // String name = mMainModelArrayList.get(position).getName();
-        // extras.putString(Contract.EXTRA_BAKE_NAME, name);
-        // SharedPrefManager.getInstance(this).setPrefDetailsPosition(position);
-        // SharedPrefManager.getInstance(this).setPrefBakeName(name);
-        intent.putExtras(extras);
-        context.startActivity(intent);
-    }
 
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
