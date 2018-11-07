@@ -108,9 +108,11 @@ public class RegisterPresenter {
         map.put(Contract.PHONE_COL, phone);//add RequestBody phone to initialized HashMap
         map.put(Contract.LANG_COL, lang);//add RequestBody lang to initialized HashMap
 
-        /*make new Call retrofit with our HashMap that carry all
-         requests body with strings and with MultipartBody that carry image file value * */
+       /*call ApiService class to make Multipart request with uploadImage method
+        pass two params first is our  HashMap that carry all
+         requests body with strings and second params is MultipartBody that carry image file value * */
         Call<ResponseApiModel> upload = mApiService.uploadImage(map, partImage);
+        /*call ApiService class to make request with registerRequest method to register new user with no image*/
 
         upload.enqueue(new Callback<ResponseApiModel>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -127,7 +129,7 @@ public class RegisterPresenter {
                     Log.d(TAG, "server_message : " + Objects.requireNonNull(response.body()).getError_msg()
                             + "\n" + Objects.requireNonNull(response.body()).getSuccess_msg());
 
-                    //    mLoading.dismiss();
+                    /*if JsonObject get Success message will do this code*/
                     if (Objects.requireNonNull(response.body()).getSuccess_msg().equals(Contract.SUCCESS_MSG_VALUE)) {
                         Toast.makeText(mCtx,
                                 Objects.requireNonNull(response.body()).getError_msg()
@@ -164,14 +166,17 @@ public class RegisterPresenter {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     /*this mothod work when user not select image while regestring*/
-    public void requestRegister(String nameval,
-                                String emailval,
-                                String passval,
-                                String phoneval) {
+    public void requestRegister(String nameval, //pass name come from editText from MainActivity
+                                String emailval,//pass email come from editText from MainActivity
+                                String passval,//pass password come from editText from MainActivity
+                                String phoneval//pass phone come from editText from MainActivity
+
+    ) {
 
         mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
 
-        mApiService.registerRequest(
+       /*call ApiService class to make request wwith registerRequest method to register new user with no image*/
+               mApiService.registerRequest(
                 nameval,
                 emailval,
                 passval,
@@ -182,14 +187,19 @@ public class RegisterPresenter {
                     @Override
                     public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
+                            /*get value from JsonObjects come from server*/
                             try {
                                 String remoteResponse = Objects.requireNonNull(response.body()).string();
                                 JSONObject jsonRESULTS = new JSONObject(remoteResponse);
                                 Log.d("JSONString", remoteResponse);
 
+                                /*JsonObjects come from server to get true or false message to atatus of correct loading*/
+
                                 if (jsonRESULTS.getString(Contract.ERROR).equals(Contract.FALSE_VAL)) {
                                     mLoading.setMessage(jsonRESULTS.optString(Contract.ERROR_MSG));
                                     Toast.makeText(mCtx, jsonRESULTS.optString(Contract.ERROR_MSG), Toast.LENGTH_SHORT).show();
+                                    /*if JsonObject get Success message will do this code*/
+
                                     if (jsonRESULTS.optString(Contract.SUCCESS_MSG).equals(Contract.SUCCESS_MSG_VALUE)) {
                                         mCtx.startActivity(new Intent(mCtx, LogInActivity.class));
                                     }
