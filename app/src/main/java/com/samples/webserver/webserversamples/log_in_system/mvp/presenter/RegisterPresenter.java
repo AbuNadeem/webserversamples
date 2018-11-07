@@ -52,18 +52,24 @@ public class RegisterPresenter {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    /*this mothod work when user select image while regestring*/
     public void requestRegisterWithPhoto(
-            String old_part_img,
-            File myfile,
-            String nameval,
-            String emailval,
-            String passval,
-            String phoneval) {
+            String old_part_img,//pass path the file of image as string from MainActivity
+            File myfile,//pass file  from MainActivity
+            String nameval,//pass name come from editText from MainActivity
+            String emailval,//pass email come from editText from MainActivity
+            String passval,//pass password come from editText from MainActivity
+            String phoneval//pass phone come from editText from MainActivity
+      ) {
+        //initialize ProgressDialog status message
         mLoading = ProgressDialog.show(mCtx, null, mCtx.getResources().getString(R.string.creating_new), true, false);
 
+        File imagefile = new File(old_part_img);//initialize new file as file that come from string old_part_img this string come from parameter
 
-        File imagefile = new File(old_part_img);
-        if (myfile != null) {
+
+        if (myfile != null) {/*all codes below inside this if statment
+                              to use file come from parameters to compress the size of
+                              the file of our image before uploading to server*/
             try {
                 try {
                     imagefile = new Compressor(mCtx)
@@ -83,23 +89,29 @@ public class RegisterPresenter {
         }
 
 
+        /*initailize new request created fom device files */
         RequestBody reqBody = RequestBody.create(MediaType.parse(Contract.MULTIPART_FILE_PATH), imagefile);
+        /*make multipart request  with our image file and our initilzed requestBody*/
         MultipartBody.Part partImage = MultipartBody.Part.createFormData(Contract.PIC_TO_LOAD, imagefile.getName(), reqBody);
-        RequestBody name = createPartFromString(nameval);
-        RequestBody email = createPartFromString(emailval);
-        RequestBody password = createPartFromString(passval);
-        RequestBody phone = createPartFromString(phoneval);
-        RequestBody lang = createPartFromString(LangUtil.getCurrentLanguage(mCtx));
 
+        RequestBody name = createPartFromString(nameval);/*initialize new request created fom string value of name */
+        RequestBody email = createPartFromString(emailval);/*initialize new request created fom string value of email*/
+        RequestBody password = createPartFromString(passval);/*initialize new request created fom string value of password*/
+        RequestBody phone = createPartFromString(phoneval);/*initialize new request created fom string value of phone*/
+        RequestBody lang = createPartFromString(LangUtil.getCurrentLanguage(mCtx));/*initailize new request created fom string value of language device*/
 
+        //creat new HashMap with string and RequestBody
         HashMap<String, RequestBody> map = new HashMap<>();
-        map.put(Contract.NAME_COL, name);
-        map.put(Contract.EMAIL_COL, email);
-        map.put(Contract.PASSWORD_COL, password);
-        map.put(Contract.PHONE_COL, phone);
-        map.put(Contract.LANG_COL, lang);
+        map.put(Contract.NAME_COL, name);//add RequestBody name to initialized HashMap
+        map.put(Contract.EMAIL_COL, email);//add RequestBody email to initialized HashMap
+        map.put(Contract.PASSWORD_COL, password);//add RequestBody password to initialized HashMap
+        map.put(Contract.PHONE_COL, phone);//add RequestBody phone to initialized HashMap
+        map.put(Contract.LANG_COL, lang);//add RequestBody lang to initialized HashMap
 
+        /*make new Call retrofit with our HashMap that carry all
+         requests body with strings and with MultipartBody that carry image file value * */
         Call<ResponseApiModel> upload = mApiService.uploadImage(map, partImage);
+
         upload.enqueue(new Callback<ResponseApiModel>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -107,7 +119,7 @@ public class RegisterPresenter {
 
                 Log.d(TAG, "myjson = : " +
                         Objects.requireNonNull(response.body()).toString());
-
+                //get value from json value if value is false all things good and successfull request no error
                 if (Objects.requireNonNull(response.body()).getError().equals(Contract.FALSE_VAL)) {
                     //   mLoading.setMessage(response.body().getError_msg());
 
@@ -124,6 +136,7 @@ public class RegisterPresenter {
                     }
                     mLoading.dismiss();
 
+                    //get value from json value if value is true there are error that come inside error_message JsonObject
 
                 } else if (Objects.requireNonNull(response.body()).getError().equals("true")) {
                     Toast.makeText(mCtx,
@@ -150,6 +163,7 @@ public class RegisterPresenter {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    /*this mothod work when user not select image while regestring*/
     public void requestRegister(String nameval,
                                 String emailval,
                                 String passval,
